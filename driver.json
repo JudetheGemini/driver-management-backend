@@ -1,0 +1,8 @@
+{
+  "first_name": "John",
+  "last_name": "Doe",
+  "license_number": "DL12345678",
+  "email": "john.doe@example.com",
+  "phone": "+1234567890",
+  "password": "SecurePass123!"
+}

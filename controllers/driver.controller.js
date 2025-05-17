@@ -2,6 +2,8 @@ import pool from '../config/db.js';
 import AppError from '../utils/appError.js';
 import catchAsync from '../utils/catchAsync.js';
 import { nanoid } from 'nanoid';
+import { hashPassword } from "../utils/authUtils.js"
+
 
 // This function creates a new driver in the database
 // It takes the request body, generates a unique driver ID, and inserts the new driver into the database
@@ -17,6 +19,42 @@ export const createDriver = catchAsync(async (req, res, next) => {
     VALUES (?, ?, ?, ?, ?, ?)`,
     [driverId, first_name, last_name, license_number, phone, email]
   );
+  
+  const [newDriver] = await pool.execute(
+    'SELECT * FROM drivers WHERE driver_id = ?',
+    [driverId]
+  );
+
+  res.status(201).json({
+    status: 'success',
+    data: {
+      driver: newDriver[0]
+    }
+  });
+});
+
+// This function registers a new driver in the database
+export const registerDriver = catchAsync(async (req, res) => {
+  const { first_name, last_name, license_number, email, phone, password } = req.body;
+  
+    const driverId = nanoid(8); 
+
+  // Validate required fields
+  if (!email || !password) {
+    throw new AppError('Email and password are required', 400);
+  }
+
+  // Hash password
+  const { hash, salt } = await hashPassword(password);
+
+  // Create driver
+  const [result] = await pool.execute(
+    `INSERT INTO drivers 
+     (driver_id, first_name, last_name, license_number, email, phone, password_hash, password_salt) 
+     VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
+    [driverId, first_name, last_name, license_number, email, phone, hash, salt]
+  );
+
   
   const [newDriver] = await pool.execute(
     'SELECT * FROM drivers WHERE driver_id = ?',

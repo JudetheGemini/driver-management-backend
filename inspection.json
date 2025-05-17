@@ -1,0 +1,60 @@
+{
+  "driver_id": "o5Ifr_Ew",
+  "vehicle_id": "y_kAP7",
+  "engine_checks": {
+    "engine_oil_level": "L3",
+    "engine_oil_color": "Dark",
+    "gear_oil_level": "L2",
+    "brake_oil_level": "Middle",
+    "power_steering_oil": "Full",
+    "radiator_coolant": "Full"
+  },
+  "ac_status": {
+    "status": "Cooling"
+  },
+  "body_damages": [
+    {
+      "damage_type": "Dent",
+      "location": "Rear left door",
+      "is_recent": false,
+      "notes": "Small dent near handle"
+    },
+    {
+      "damage_type": "Scratch",
+      "location": "Front bumper",
+      "is_recent": true
+    }
+  ],
+  "tire_checks": {
+    "front_left_condition": "Good tread (5mm)",
+    "front_right_condition": "Worn (2mm)",
+    "back_left_condition": "Good tread (6mm)",
+    "back_right_condition": "Good tread (5mm)"
+  },
+  "ground_checks": {
+    "oil_on_floor": false,
+    "oil_on_tires": true
+  },
+  "light_checks": {
+    "full_light": true,
+    "dim_light": true,
+    "traffic_light": true,
+    "brake_light": true,
+    "parking_light": false,
+    "reverse_light": true
+  },
+  "seatbelt_checks": {
+    "front_left": true,
+    "front_right": true,
+    "back_left": false,
+    "back_right": true,
+    "back_middle": true
+  },
+  "tools_check": {
+    "spare_tire": true,
+    "jack_wheel_spanner": true,
+    "caution_triangle": false,
+    "fire_extinguisher": true
+  },
+  "notes": "Vehicle in good condition except for right front tire wear"
+}

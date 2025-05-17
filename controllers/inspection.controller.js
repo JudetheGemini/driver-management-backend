@@ -129,6 +129,8 @@ export const getInspection = catchAsync(async (req, res, next) => {
   });
 })
 
+// Create detailed inspection
+// This function creates a detailed inspection record
 export const createDetailedInspection = catchAsync(async (req, res, next) => {
   const {
     driver_id,

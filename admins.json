@@ -1,0 +1,8 @@
+{
+  "firstname": "Admin",
+  "lastname": "User",
+  "email": "admin.user@yourcompany.com",
+  "phone_number": "+1234567890",
+  "password": "SecureAdmin@123",
+  "role": "superadmin"
+}

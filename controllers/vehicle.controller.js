@@ -129,7 +129,6 @@ export const deleteVehicle = catchAsync(async (req, res, next) => {
   });
 });
 
-
 // Get vehicle inspection history
 // This function retrieves the last 30 inspections for a specific vehicle
 // It includes the inspection date, driver name, and whether there are any body damages
