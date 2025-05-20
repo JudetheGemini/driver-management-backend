@@ -190,13 +190,16 @@ export const createDetailedInspection = catchAsync(async (req, res, next) => {
       // Engine checks
       engine_checks && connection.execute(
         `INSERT INTO engine_checks 
-         (inspection_id, engine_oil_level, engine_oil_color, brake_oil_level) 
-         VALUES (?, ?, ?, ?)`,
+         (inspection_id, engine_oil_level, engine_oil_color, brake_oil_level, gear_oil_level, power_steering_oil, radiator_coolant) 
+         VALUES (?, ?, ?, ?, ?, ?, ?)`,
         [
           inspectionId,
           engine_checks.engine_oil_level,
           engine_checks.engine_oil_color,
-          engine_checks.brake_oil_level
+          engine_checks.brake_oil_level,
+          engine_checks.gear_oil_level,
+          engine_checks.power_steering_oil,
+          engine_checks.radiator_coolant
         ]
       ),
       
@@ -211,9 +214,9 @@ export const createDetailedInspection = catchAsync(async (req, res, next) => {
       body_damages.length > 0 && Promise.all(
         body_damages.map(damage => connection.execute(
           `INSERT INTO body_damages 
-           (inspection_id, damage_type, location, is_recent) 
-           VALUES (?, ?, ?, ?)`,
-          [inspectionId, damage.damage_type, damage.location, damage.is_recent]
+           (inspection_id, damage_type, location, is_recent, notes) 
+           VALUES (?, ?, ?, ?, ?)`,
+          [inspectionId, damage.damage_type, damage.location, damage.is_recent, damage.notes]
         ))
       ),
       
