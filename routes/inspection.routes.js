@@ -12,6 +12,11 @@ router
     .route('/today')
     .get(inspectionController.getTodaysInspections);
 
+// Get all inspections
+router
+    .route('/')
+    .get(inspectionController.getAllInspections);
+
 // Get inspection by ID
 router
     .route('/:id')

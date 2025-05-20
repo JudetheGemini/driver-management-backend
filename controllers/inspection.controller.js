@@ -73,6 +73,26 @@ export const getTodaysInspections = catchAsync(async (req, res, next) => {
   });
 });
 
+// Get all inspections
+export const getAllInspections = catchAsync(async (req, res, next) => {
+  const [inspections] = await pool.execute(
+    `SELECT i.inspection_id, i.inspection_date,
+     d.first_name, d.last_name, d.license_number,
+     v.make, v.model, v.registration_number
+     FROM inspections i
+     JOIN drivers d ON i.driver_id = d.driver_id
+     JOIN vehicles v ON i.vehicle_id = v.vehicle_id`
+  );
+
+  res.status(200).json({
+    status: 'success',
+    results: inspections.length,
+    data: {
+      inspections
+    }
+  });
+});
+
 // Get inspection by ID
 export const getInspection = catchAsync(async (req, res, next) => {
  const inspectionId = req.params.id;
