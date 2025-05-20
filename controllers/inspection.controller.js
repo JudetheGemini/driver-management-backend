@@ -142,7 +142,7 @@ export const createDetailedInspection = catchAsync(async (req, res, next) => {
     ground_checks,
     light_checks,
     seatbelt_checks,
-    tools_checks
+    tools_check
   } = req.body;
 
   // 1. Validate required fields
@@ -272,16 +272,16 @@ export const createDetailedInspection = catchAsync(async (req, res, next) => {
       ),
       
       // Tools checks
-      tools_checks && connection.execute(
+      tools_check && connection.execute(
         `INSERT INTO tools_check 
          (inspection_id, spare_tire, jack_wheel_spanner, caution_triangle, fire_extinguisher) 
          VALUES (?, ?, ?, ?, ?)`,
         [
           inspectionId,
-          tools_checks.spare_tire,
-          tools_checks.jack_wheel_spanner,
-          tools_checks.caution_triangle,
-          tools_checks.fire_extinguisher
+          tools_check.spare_tire,
+          tools_check.jack_wheel_spanner,
+          tools_check.caution_triangle,
+          tools_check.fire_extinguisher
         ]
       )
     ]);
