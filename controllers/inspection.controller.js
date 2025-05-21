@@ -266,13 +266,16 @@ export const createDetailedInspection = catchAsync(async (req, res, next) => {
       // Light checks
       light_checks && connection.execute(
         `INSERT INTO light_checks 
-         (inspection_id, full_light, dim_light, brake_light) 
-         VALUES (?, ?, ?, ?)`,
+         (inspection_id, full_light, dim_light, brake_light, traffic_light, reverse_light, parking_light) 
+         VALUES (?, ?, ?, ?, ?, ?, ?)`,
         [
           inspectionId,
           light_checks.full_light,
           light_checks.dim_light,
-          light_checks.brake_light
+          light_checks.brake_light,
+          light_checks.traffic_light,
+          light_checks.reverse_light,
+          light_checks.parking_light
         ]
       ),
       
